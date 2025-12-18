@@ -1,1 +1,3 @@
-public class AnomalyRule
+public class AnomalyRuleDto{
+    
+}
