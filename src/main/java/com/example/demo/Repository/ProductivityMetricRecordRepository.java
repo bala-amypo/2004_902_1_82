@@ -1,1 +1,3 @@
-public class ProductivityMetricRecordRepository
+public class ProductivityMetricRecordRepository{
+    
+}
