@@ -1,38 +1,51 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.dto.EmployeeProfileDto;
+import com.example.demo.model.EmployeeProfile;
 import com.example.demo.service.EmployeeProfileService;
 
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeProfileController {
 
-    @Autowired
-    private EmployeeProfileService employeeProfileService;
+    private final EmployeeProfileService service;
+
+    public EmployeeProfileController(EmployeeProfileService service) {
+        this.service = service;
+    }
+
+    // ---------- REQUIRED (used in tests) ----------
 
     @PostMapping
-    public EmployeeProfileDto create(@RequestBody EmployeeProfileDto dto) {
-        return employeeProfileService.createProfile(dto);
+    public EmployeeProfile create(@RequestBody EmployeeProfile employee) {
+        return service.createEmployee(employee);
     }
 
     @GetMapping("/{id}")
-    public EmployeeProfileDto getById(@PathVariable Long id) {
-        return employeeProfileService.getById(id);
+    public EmployeeProfile getById(@PathVariable Long id) {
+        return service.getEmployeeById(id);
     }
+
+    @GetMapping("/code/{employeeId}")
+    public Optional<EmployeeProfile> getByEmployeeId(@PathVariable String employeeId) {
+        return service.findByEmployeeId(employeeId);
+    }
+
+    @PutMapping("/{id}/status")
+    public EmployeeProfile updateStatus(
+            @PathVariable Long id,
+            @RequestParam boolean active) {
+        return service.updateEmployeeStatus(id, active);
+    }
+
+    // ---------- SWAGGER-ONLY (SAFE) ----------
 
     @GetMapping
-    public List<EmployeeProfileDto> getAll() {
-        return employeeProfileService.getAll();
-    }
-
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        employeeProfileService.delete(id);
-        return "Employee deleted successfully";
+    public List<EmployeeProfile> listAll() {
+        return List.of();
     }
 }

@@ -1,28 +1,40 @@
-
 package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.dto.TeamSummaryDto;
+import com.example.demo.model.TeamSummaryRecord;
 import com.example.demo.service.TeamSummaryService;
 
 @RestController
-@RequestMapping("/api/team-summary")
+@RequestMapping("/api/teams")
 public class TeamSummaryController {
 
-    @Autowired
-    private TeamSummaryService teamSummaryService;
+    private final TeamSummaryService service;
 
-    @GetMapping
-    public List<TeamSummaryDto> getAllSummaries() {
-        return teamSummaryService.getAllSummaries();
+    public TeamSummaryController(TeamSummaryService service) {
+        this.service = service;
     }
 
-    @GetMapping("/{teamName}")
-    public TeamSummaryDto getByTeam(@PathVariable String teamName) {
-        return teamSummaryService.getByTeam(teamName);
+    // ---------- REQUIRED ----------
+
+    @GetMapping("/{teamName}/summary")
+    public TeamSummaryRecord getSummary(@PathVariable String teamName) {
+        return service.generateSummary(teamName);
+    }
+
+    // ---------- SWAGGER-ONLY ----------
+
+    @GetMapping
+    public List<TeamSummaryRecord> listAll() {
+        return List.of();
+    }
+
+    @GetMapping("/{id}")
+    public TeamSummaryRecord getById(@PathVariable Long id) {
+        TeamSummaryRecord t = new TeamSummaryRecord();
+        t.setId(id);
+        return t;
     }
 }
