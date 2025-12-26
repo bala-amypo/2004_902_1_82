@@ -1,3 +1,2 @@
-public class ProductivityCaculator{
-    
+public class ProductivityCaculator {
 }
