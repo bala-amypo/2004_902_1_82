@@ -9,17 +9,6 @@ public class SecurityConfig {
     }
 }
 
-repository
-
-
-
-
-
-
-security
-
-
-
 service:
    impl:
 1)	AnomalyFlagServiceImpl.java
@@ -216,68 +205,11 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 }
 Service:
-1)	AnomalyFlagService.java
-package com.example.demo.service;
 
-import java.util.List;
 
-import com.example.demo.model.AnomalyFlagRecord;
 
-public interface AnomalyFlagService {
 
-    AnomalyFlagRecord flagAnomaly(AnomalyFlagRecord record);
 
-    List<AnomalyFlagRecord> getAllFlags();
-}
-
-2)	AnomalyRuleService.java
-package com.example.demo.service;
-
-import java.util.List;
-
-import com.example.demo.model.AnomalyRule;
-
-public interface AnomalyRuleService {
-
-    AnomalyRule createRule(AnomalyRule rule);
-
-    List<AnomalyRule> getActiveRules();
-}
-
-3)	EmployeeProfileService.java
-package com.example.demo.service;
-
-import java.util.Optional;
-
-import com.example.demo.model.EmployeeProfile;
-
-public interface EmployeeProfileService {
-
-    EmployeeProfile createEmployee(EmployeeProfile employee);
-
-    EmployeeProfile getEmployeeById(Long id);
-
-    Optional<EmployeeProfile> findByEmployeeId(String employeeId);
-
-    EmployeeProfile updateEmployeeStatus(Long id, boolean active);
-}
-
-4)	ProductivityMetricService.java
-package com.example.demo.service;
-
-import java.util.List;
-import java.util.Optional;
-
-import com.example.demo.model.ProductivityMetricRecord;
-
-public interface ProductivityMetricService {
-
-    ProductivityMetricRecord recordMetric(ProductivityMetricRecord record);
-
-    Optional<ProductivityMetricRecord> getMetricById(Long id);
-
-    List<ProductivityMetricRecord> getAllMetrics();
-}
 
 5)	TeamSummaryService.java
 package com.example.demo.service;
