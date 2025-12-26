@@ -8,6 +8,8 @@ public class SecurityConfig {
         
     }
 }
+
+
 exception:
 1)	ResourceNotFoundException.java
 package com.example.demo.exception;
