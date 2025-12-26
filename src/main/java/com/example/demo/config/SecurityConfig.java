@@ -14,129 +14,13 @@ dto:
 
 
 
-4)	AuthResponse.java
-package com.example.demo.dto;
-
-public class AuthResponse {
-
-    private String token;
-
-    public AuthResponse() {}
-
-    public String getToken() { return token; }
-    public void setToken(String token) { this.token = token; }
-}
-
-
-5)	EmployeeProfileDto.java
-package com.example.demo.dto;
-
-public class EmployeeProfileDto {
-
-    private String employeeId;
-    private String fullName;
-    private String email;
-    private String teamName;
-    private Boolean active;
-
-    public EmployeeProfileDto() {}
-
-    public String getEmployeeId() { return employeeId; }
-    public void setEmployeeId(String employeeId) { this.employeeId = employeeId; }
-
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getTeamName() { return teamName; }
-    public void setTeamName(String teamName) { this.teamName = teamName; }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
-}
 
 
 
-6)	ProductivityMetricDto.java
-package com.example.demo.dto;
 
-import java.time.LocalDate;
 
-public class ProductivityMetricDto {
 
-    private Long employeeId;
-    private LocalDate date;
-    private Double hoursLogged;
-    private Integer tasksCompleted;
-    private Integer meetingsAttended;
-    private Double productivityScore;
 
-    public ProductivityMetricDto() {}
-
-    public Long getEmployeeId() { return employeeId; }
-    public void setEmployeeId(Long employeeId) { this.employeeId = employeeId; }
-
-    public LocalDate getDate() { return date; }
-    public void setDate(LocalDate date) { this.date = date; }
-
-    public Double getHoursLogged() { return hoursLogged; }
-    public void setHoursLogged(Double hoursLogged) { this.hoursLogged = hoursLogged; }
-
-    public Integer getTasksCompleted() { return tasksCompleted; }
-    public void setTasksCompleted(Integer tasksCompleted) { this.tasksCompleted = tasksCompleted; }
-
-    public Integer getMeetingsAttended() { return meetingsAttended; }
-    public void setMeetingsAttended(Integer meetingsAttended) { this.meetingsAttended = meetingsAttended; }
-
-    public Double getProductivityScore() { return productivityScore; }
-    public void setProductivityScore(Double productivityScore) { this.productivityScore = productivityScore; }
-}
-
-7)	RegisterRequest.java
-package com.example.demo.dto;
-
-public class RegisterRequest {
-
-    private String username;
-    private String password;
-
-    public RegisterRequest() {}
-
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-}
-
-8)	TeamSummaryDto.java
-package com.example.demo.dto;
-
-import java.time.LocalDate;
-
-public class TeamSummaryDto {
-
-    private String teamName;
-    private Double avgScore;
-    private Integer anomalyCount;
-    private LocalDate summaryDate;
-
-    public TeamSummaryDto() {}
-
-    public String getTeamName() { return teamName; }
-    public void setTeamName(String teamName) { this.teamName = teamName; }
-
-    public Double getAvgScore() { return avgScore; }
-    public void setAvgScore(Double avgScore) { this.avgScore = avgScore; }
-
-    public Integer getAnomalyCount() { return anomalyCount; }
-    public void setAnomalyCount(Integer anomalyCount) { this.anomalyCount = anomalyCount; }
-
-    public LocalDate getSummaryDate() { return summaryDate; }
-    public void setSummaryDate(LocalDate summaryDate) { this.summaryDate = summaryDate; }
-}
 
 exception:
 1)	ResourceNotFoundException.java
