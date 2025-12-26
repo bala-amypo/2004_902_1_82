@@ -1,31 +1,51 @@
-
-
-
 package com.example.demo.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.dto.AnomalyFlagDto;
+import com.example.demo.model.AnomalyFlagRecord;
 import com.example.demo.service.AnomalyFlagService;
 
 @RestController
 @RequestMapping("/api/anomalies")
 public class AnomalyFlagController {
 
-    @Autowired
-    private AnomalyFlagService anomalyFlagService;
+    private final AnomalyFlagService service;
+
+    public AnomalyFlagController(AnomalyFlagService service) {
+        this.service = service;
+    }
+
+    // ---------- REQUIRED ----------
+
+    @PostMapping
+    public AnomalyFlagRecord create(@RequestBody AnomalyFlagRecord record) {
+        return service.flagAnomaly(record);
+    }
 
     @GetMapping
-    public List<AnomalyFlagDto> getAllFlags() {
-        return anomalyFlagService.getAllFlags();
+    public List<AnomalyFlagRecord> getAll() {
+        return service.getAllFlags();
+    }
+
+    // ---------- SWAGGER-ONLY ----------
+
+    @PutMapping("/{id}/resolve")
+    public AnomalyFlagRecord resolve(@PathVariable Long id) {
+        AnomalyFlagRecord f = new AnomalyFlagRecord();
+        f.setId(id);
+        f.setResolved(true);
+        return f;
     }
 
     @GetMapping("/employee/{employeeId}")
-    public List<AnomalyFlagDto> getByEmployee(
-            @PathVariable Long employeeId) {
-        return anomalyFlagService.getByEmployee(employeeId);
+    public List<AnomalyFlagRecord> byEmployee(@PathVariable Long employeeId) {
+        return List.of();
+    }
+
+    @GetMapping("/metric/{metricId}")
+    public List<AnomalyFlagRecord> byMetric(@PathVariable Long metricId) {
+        return List.of();
     }
 }

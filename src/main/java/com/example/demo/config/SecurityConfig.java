@@ -1,6 +1,3 @@
-
-
-2) SecurityConfig.java
 package com.example.demo.config;
 
 import org.springframework.context.annotation.Configuration;
@@ -13,110 +10,8 @@ public class SecurityConfig {
 }
 
 Controller:
-1)	AnomalyFlagController.java
-package com.example.demo.controller;
 
-import java.util.List;
 
-import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.model.AnomalyFlagRecord;
-import com.example.demo.service.AnomalyFlagService;
-
-@RestController
-@RequestMapping("/api/anomalies")
-public class AnomalyFlagController {
-
-    private final AnomalyFlagService service;
-
-    public AnomalyFlagController(AnomalyFlagService service) {
-        this.service = service;
-    }
-
-    // ---------- REQUIRED ----------
-
-    @PostMapping
-    public AnomalyFlagRecord create(@RequestBody AnomalyFlagRecord record) {
-        return service.flagAnomaly(record);
-    }
-
-    @GetMapping
-    public List<AnomalyFlagRecord> getAll() {
-        return service.getAllFlags();
-    }
-
-    // ---------- SWAGGER-ONLY ----------
-
-    @PutMapping("/{id}/resolve")
-    public AnomalyFlagRecord resolve(@PathVariable Long id) {
-        AnomalyFlagRecord f = new AnomalyFlagRecord();
-        f.setId(id);
-        f.setResolved(true);
-        return f;
-    }
-
-    @GetMapping("/employee/{employeeId}")
-    public List<AnomalyFlagRecord> byEmployee(@PathVariable Long employeeId) {
-        return List.of();
-    }
-
-    @GetMapping("/metric/{metricId}")
-    public List<AnomalyFlagRecord> byMetric(@PathVariable Long metricId) {
-        return List.of();
-    }
-}
-2)	AnomalyRuleController.java
-package com.example.demo.controller;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
-import com.example.demo.model.AnomalyRule;
-import com.example.demo.service.AnomalyRuleService;
-
-@RestController
-@RequestMapping("/api/anomaly-rules")
-public class AnomalyRuleController {
-
-    private final AnomalyRuleService service;
-
-    public AnomalyRuleController(AnomalyRuleService service) {
-        this.service = service;
-    }
-
-    // ---------- REQUIRED ----------
-
-    @PostMapping
-    public AnomalyRule create(@RequestBody AnomalyRule rule) {
-        return service.createRule(rule);
-    }
-
-    @GetMapping
-    public List<AnomalyRule> getActiveRules() {
-        return service.getActiveRules();
-    }
-
-    // ---------- SWAGGER-ONLY ----------
-
-    @PutMapping("/{id}")
-    public AnomalyRule update(@PathVariable Long id, @RequestBody AnomalyRule rule) {
-        rule.setId(id);
-        return rule;
-    }
-
-    @GetMapping("/{id}")
-    public AnomalyRule getById(@PathVariable Long id) {
-        AnomalyRule r = new AnomalyRule();
-        r.setId(id);
-        return r;
-    }
-
-    @GetMapping("/active")
-    public List<AnomalyRule> active() {
-        return List.of();
-    }
-}
 
 3)	AuthController.java
 package com.example.demo.controller;
