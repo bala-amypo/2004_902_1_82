@@ -11,73 +11,8 @@ public class SecurityConfig {
 
 dto:
 
-1)	AnomalyFlagDto.java
-package com.example.demo.dto;
-
-public class AnomalyFlagDto {
-
-    private Long id;
-    private String ruleCode;
-    private String severity;
-    private Boolean resolved;
-    private String details;
-
-    public AnomalyFlagDto() {}
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getRuleCode() { return ruleCode; }
-    public void setRuleCode(String ruleCode) { this.ruleCode = ruleCode; }
-
-    public String getSeverity() { return severity; }
-    public void setSeverity(String severity) { this.severity = severity; }
-
-    public Boolean getResolved() { return resolved; }
-    public void setResolved(Boolean resolved) { this.resolved = resolved; }
-
-    public String getDetails() { return details; }
-    public void setDetails(String details) { this.details = details; }
-}
-
-2)	AnomalyRuleDto.java
-package com.example.demo.dto;
-
-public class AnomalyRuleDto {
-
-    private String ruleCode;
-    private Double thresholdValue;
-    private Boolean active;
-
-    public AnomalyRuleDto() {}
-
-    public String getRuleCode() { return ruleCode; }
-    public void setRuleCode(String ruleCode) { this.ruleCode = ruleCode; }
-
-    public Double getThresholdValue() { return thresholdValue; }
-    public void setThresholdValue(Double thresholdValue) { this.thresholdValue = thresholdValue; }
-
-    public Boolean getActive() { return active; }
-    public void setActive(Boolean active) { this.active = active; }
-}
 
 
-3)	AuthRequest.java
-package com.example.demo.dto;
-
-public class AuthRequest {
-
-    private String username;
-    private String password;
-
-    public AuthRequest() {}
-
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
-
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-}
 
 4)	AuthResponse.java
 package com.example.demo.dto;
