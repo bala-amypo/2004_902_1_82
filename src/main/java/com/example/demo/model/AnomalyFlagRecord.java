@@ -1,42 +1,70 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
-import java.time.LocalDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name = "anomaly_flags")
 public class AnomalyFlagRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String reason;
-    private LocalDate flaggedDate;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private EmployeeProfile employee;
-
-    @ManyToOne
-    @JoinColumn(name = "metric_id")
-    private ProductivityMetricRecord metric;
+    private Long metricId;
+    private String ruleCode;
+    private String severity;
+    private Boolean resolved = false;
+    private String details;
 
     public AnomalyFlagRecord() {}
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getReason() { return reason; }
-    public void setReason(String reason) { this.reason = reason; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public LocalDate getFlaggedDate() { return flaggedDate; }
-    public void setFlaggedDate(LocalDate flaggedDate) { this.flaggedDate = flaggedDate; }
+    public Long getMetricId() {
+        return metricId;
+    }
 
-    public EmployeeProfile getEmployee() { return employee; }
-    public void setEmployee(EmployeeProfile employee) { this.employee = employee; }
+    public void setMetricId(Long metricId) {
+        this.metricId = metricId;
+    }
 
-    public ProductivityMetricRecord getMetric() { return metric; }
-    public void setMetric(ProductivityMetricRecord metric) { this.metric = metric; }
+    public String getRuleCode() {
+        return ruleCode;
+    }
+
+    public void setRuleCode(String ruleCode) {
+        this.ruleCode = ruleCode;
+    }
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
+
+    public Boolean getResolved() {
+        return resolved;
+    }
+
+    public void setResolved(Boolean resolved) {
+        this.resolved = resolved;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
 }
-

@@ -1,34 +1,53 @@
+2)	AnomalyRule.java
 package com.example.demo.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
 @Entity
-@Table(name = "anomaly_rules")
 public class AnomalyRule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String ruleName;
-    private int minScore;
-    private int maxScore;
-    private boolean active;
+    private String ruleCode;
+    private Double thresholdValue;
+    private Boolean active = true;
 
     public AnomalyRule() {}
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getRuleName() { return ruleName; }
-    public void setRuleName(String ruleName) { this.ruleName = ruleName; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public int getMinScore() { return minScore; }
-    public void setMinScore(int minScore) { this.minScore = minScore; }
+    public String getRuleCode() {
+        return ruleCode;
+    }
 
-    public int getMaxScore() { return maxScore; }
-    public void setMaxScore(int maxScore) { this.maxScore = maxScore; }
+    public void setRuleCode(String ruleCode) {
+        this.ruleCode = ruleCode;
+    }
 
-    public boolean isActive() { return active; }
-    public void setActive(boolean active) { this.active = active; }
+    public Double getThresholdValue() {
+        return thresholdValue;
+    }
+
+    public void setThresholdValue(Double thresholdValue) {
+        this.thresholdValue = thresholdValue;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 }
