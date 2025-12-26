@@ -9,113 +9,8 @@ public class SecurityConfig {
     }
 }
 
-service:
-   impl:
-1)	AnomalyFlagServiceImpl.java
-package com.example.demo.service.impl;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
-import com.example.demo.model.AnomalyFlagRecord;
-import com.example.demo.repository.AnomalyFlagRecordRepository;
-import com.example.demo.service.AnomalyFlagService;
-
-@Service
-public class AnomalyFlagServiceImpl implements AnomalyFlagService {
-
-    private final AnomalyFlagRecordRepository repository;
-
-    public AnomalyFlagServiceImpl(AnomalyFlagRecordRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public AnomalyFlagRecord flagAnomaly(AnomalyFlagRecord record) {
-        return repository.save(record);
-    }
-
-    @Override
-    public List<AnomalyFlagRecord> getAllFlags() {
-        return repository.findAll();
-    }
-}
-
-2)	AnomalyRuleServiceImpl.java
-package com.example.demo.service.impl;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
-import com.example.demo.model.AnomalyRule;
-import com.example.demo.repository.AnomalyRuleRepository;
-import com.example.demo.service.AnomalyRuleService;
-
-@Service
-public class AnomalyRuleServiceImpl implements AnomalyRuleService {
-
-    private final AnomalyRuleRepository repository;
-
-    public AnomalyRuleServiceImpl(AnomalyRuleRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public AnomalyRule createRule(AnomalyRule rule) {
-        return repository.save(rule);
-    }
-
-    @Override
-    public List<AnomalyRule> getActiveRules() {
-        return repository.findByActiveTrue();
-    }
-}
 
 3)	EmployeeProfileServiceImpl.java
-package com.example.demo.service.impl;
-
-import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
-import com.example.demo.model.EmployeeProfile;
-import com.example.demo.repository.EmployeeProfileRepository;
-import com.example.demo.service.EmployeeProfileService;
-
-@Service
-public class EmployeeProfileServiceImpl implements EmployeeProfileService {
-
-    private final EmployeeProfileRepository repository;
-
-    public EmployeeProfileServiceImpl(EmployeeProfileRepository repository) {
-        this.repository = repository;
-    }
-
-    @Override
-    public EmployeeProfile createEmployee(EmployeeProfile employee) {
-        return repository.save(employee);
-    }
-
-    @Override
-    public EmployeeProfile getEmployeeById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found"));
-    }
-
-    @Override
-    public Optional<EmployeeProfile> findByEmployeeId(String employeeId) {
-        return repository.findByEmployeeId(employeeId);
-    }
-
-    @Override
-    public EmployeeProfile updateEmployeeStatus(Long id, boolean active) {
-        EmployeeProfile emp = getEmployeeById(id);
-        emp.setActive(active);
-        return repository.save(emp);
-    }
-}
 
 4)	ProductivityMetricServiceImpl.java
 package com.example.demo.service.impl;
@@ -203,37 +98,6 @@ public class UserAccountServiceImpl implements UserAccountService {
     public Optional<UserAccount> findByUsername(String username) {
         return repository.findByUsername(username);
     }
-}
-Service:
-
-
-
-
-
-
-5)	TeamSummaryService.java
-package com.example.demo.service;
-
-import com.example.demo.model.TeamSummaryRecord;
-
-public interface TeamSummaryService {
-
-    TeamSummaryRecord generateSummary(String teamName);
-}
-
-
-6)	UserAccountService.java
-package com.example.demo.service;
-
-import java.util.Optional;
-
-import com.example.demo.model.UserAccount;
-
-public interface UserAccountService {
-
-    UserAccount register(UserAccount user);
-
-    Optional<UserAccount> findByUsername(String username);
 }
 
 Util:
