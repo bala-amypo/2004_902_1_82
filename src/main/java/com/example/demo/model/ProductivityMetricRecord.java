@@ -1,51 +1,90 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 @Entity
-@Table(
-    name = "productivity_metrics",
-    uniqueConstraints = @UniqueConstraint(columnNames = {"employee_id", "metric_date"})
-)
 public class ProductivityMetricRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int hoursWorked;
-    private int tasksCompleted;
-    private int meetingsAttended;
-    private int productivityScore;
-
-    @Column(name = "metric_date")
+    private Long employeeId;
     private LocalDate date;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private EmployeeProfile employee;
+    private Double hoursLogged;
+    private Integer tasksCompleted;
+    private Integer meetingsAttended;
+    private Double productivityScore;
+    private String rawDataJson;
 
     public ProductivityMetricRecord() {}
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public int getHoursWorked() { return hoursWorked; }
-    public void setHoursWorked(int hoursWorked) { this.hoursWorked = hoursWorked; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public int getTasksCompleted() { return tasksCompleted; }
-    public void setTasksCompleted(int tasksCompleted) { this.tasksCompleted = tasksCompleted; }
+    public Long getEmployeeId() {
+        return employeeId;
+    }
 
-    public int getMeetingsAttended() { return meetingsAttended; }
-    public void setMeetingsAttended(int meetingsAttended) { this.meetingsAttended = meetingsAttended; }
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
+    }
 
-    public int getProductivityScore() { return productivityScore; }
-    public void setProductivityScore(int productivityScore) { this.productivityScore = productivityScore; }
+    public LocalDate getDate() {
+        return date;
+    }
 
-    public LocalDate getDate() { return date; }
-    public void setDate(LocalDate date) { this.date = date; }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 
-    public EmployeeProfile getEmployee() { return employee; }
-    public void setEmployee(EmployeeProfile employee) { this.employee = employee; }
+    public Double getHoursLogged() {
+        return hoursLogged;
+    }
+
+    public void setHoursLogged(Double hoursLogged) {
+        this.hoursLogged = hoursLogged;
+    }
+
+    public Integer getTasksCompleted() {
+        return tasksCompleted;
+    }
+
+    public void setTasksCompleted(Integer tasksCompleted) {
+        this.tasksCompleted = tasksCompleted;
+    }
+
+    public Integer getMeetingsAttended() {
+        return meetingsAttended;
+    }
+
+    public void setMeetingsAttended(Integer meetingsAttended) {
+        this.meetingsAttended = meetingsAttended;
+    }
+
+    public Double getProductivityScore() {
+        return productivityScore;
+    }
+
+    public void setProductivityScore(Double productivityScore) {
+        this.productivityScore = productivityScore;
+    }
+
+    public String getRawDataJson() {
+        return rawDataJson;
+    }
+
+    public void setRawDataJson(String rawDataJson) {
+        this.rawDataJson = rawDataJson;
+    }
 }
